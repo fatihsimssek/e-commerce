@@ -17,9 +17,12 @@ body {
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  display: flex;
+  max-width: 1194px;
+  height: 834px;
+  width: 100%;
+  background-color: #252836;
+  border-radius: 16px;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
