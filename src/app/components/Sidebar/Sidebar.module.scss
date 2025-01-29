@@ -1,0 +1,50 @@
+@import "./../../styles/index.scss";
+
+.sidebar {
+  max-width: 92px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: $background;
+  position: fixed;
+  top: 0;
+  left: 0;
+  .logo {
+    margin-top: 10px;
+  }
+  .menuItems {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: center;
+    background-color: $background;
+    margin-top: 10px;
+    a {
+      width: 92px;
+      height: 102px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      border: none;
+      background-color: transparent;
+      cursor: pointer;
+      .menuItem {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+    }
+    .active {
+      width: 92px;
+      height: 102px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-color: $secondaryColor;
+      border-radius: 10px;
+    }
+  }
+}
