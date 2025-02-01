@@ -1,37 +1,48 @@
 @import "./../../styles/index.scss";
 
 .header {
+  max-width: 632px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
+  font-family: $fontBarlow, sans-serif;
   align-items: center;
   padding: 20px;
+  gap: 180px;
+  position: absolute;
+  top: 0;
+  left: 90;
   .headerTitle {
     .title {
-      font-size: 24px;
-      font-weight: bold;
-      font-family: $fontBarlow;
+      font-size: 28px;
+      font-weight: 600;
+      line-height: 40px;
+      color: $white;
     }
-    .date {
-      font-size: 14px;
-      color: #9ca3af;
+    .subtitle {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 22px;
+      color: $gray;
     }
   }
   .search {
     display: flex;
     align-items: center;
-    background-color: #374151;
+    background-color: #2d303e;
     border-radius: 8px;
     padding: 5px 10px;
+    border: 1px solid #393c49;
     input {
       border: none;
       background: none;
-      color: #ffffff;
+      color: $white;
       padding: 5px;
       outline: none;
       font-size: 14px;
     }
     i {
-      color: #9ca3af;
+      color: $gray;
       margin-right: 5px;
     }
   }
