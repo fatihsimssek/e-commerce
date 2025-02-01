@@ -1,5 +1,6 @@
 import localFont from "next/font/local";
 import "./global.css";
+import Layout from "./components/Layout";
 
 const barlow = localFont({
   src: [
@@ -76,7 +77,9 @@ export const metadata = {
 export default function RootLayout({ children }) {
   return (
     <html lang="en">
-      <body className={`${barlow.variable} antialiased`}>{children}</body>
+      <body className={`${barlow.variable} antialiased`}>
+        <Layout>{children}</Layout>
+      </body>
     </html>
   );
 }
