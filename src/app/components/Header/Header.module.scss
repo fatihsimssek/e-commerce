@@ -2,6 +2,7 @@
 .container {
   display: flex;
   flex-direction: column;
+  padding: 20px;
   position: absolute;
   top: 0;
   left: 90;
@@ -12,7 +13,6 @@
     justify-content: space-between;
     font-family: $fontBarlow, sans-serif;
     align-items: center;
-    padding: 20px;
     gap: 180px;
     .headerTitle {
       .title {

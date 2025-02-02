@@ -2,12 +2,16 @@
 
 .layout {
   display: flex;
+  max-width: 1194px;
   width: 100%;
+  height: 834px;
   flex-direction: row;
   align-items: center;
   align-content: flex-start;
   flex-wrap: wrap;
   position: absolute;
+  border-radius: 16px;
+  background-color: $secondaryColor;
   top: 0;
   left: 0;
 }
