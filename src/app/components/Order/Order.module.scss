@@ -1,0 +1,155 @@
+@import "./../../styles/index.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $background;
+  border-radius: 0 16px 16px 0;
+  padding: 20px;
+  width: 90%;
+  max-width: 408px;
+  height: 834px;
+  color: $white;
+  position: absolute;
+  left: 785px;
+  top: 0;
+  .header {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 20px;
+    gap: 40px;
+
+    .title {
+      font-size: 18px;
+      font-weight: 600;
+    }
+    .buttons {
+      display: flex;
+      gap: 10px;
+      .button {
+        padding: 5px 10px;
+        border-radius: 10px;
+        border: none;
+        cursor: pointer;
+        font-size: 14px;
+
+        &.active {
+          background-color: #ff6b6b;
+          color: #ffffff;
+        }
+
+        &.inactive {
+          background-color: #3a3a4a;
+          color: #ffffff;
+        }
+      }
+    }
+    .orderHeader {
+      display: flex;
+      justify-content: space-between;
+      gap: 250px;
+      .quantity {
+        display: flex;
+        align-items: center;
+        gap: 20px;
+      }
+    }
+  }
+
+  .orderList {
+    margin-bottom: 20px;
+  }
+
+  .orderItem {
+    display: flex;
+    align-items: center;
+    margin-bottom: 15px;
+
+    img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+  }
+
+  .orderDetails {
+    flex-grow: 1;
+
+    h2 {
+      font-size: 14px;
+      font-weight: 600;
+      margin: 0;
+    }
+
+    p {
+      font-size: 12px;
+      color: #a0a0b0;
+      margin: 5px 0 0 0;
+    }
+  }
+
+  .orderQty {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+
+    input {
+      width: 30px;
+      text-align: center;
+      border: none;
+      background-color: #3a3a4a;
+      color: #ffffff;
+      border-radius: 5px;
+    }
+  }
+
+  .orderPrice {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .orderNote {
+    background-color: #3a3a4a;
+    border: none;
+    border-radius: 10px;
+    padding: 5px 10px;
+    color: #a0a0b0;
+    width: 100%;
+    margin-top: 5px;
+  }
+
+  .orderDelete {
+    color: #ff6b6b;
+    cursor: pointer;
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 20px;
+
+    p {
+      margin: 0;
+      font-size: 14px;
+    }
+
+    .total {
+      font-weight: 600;
+    }
+  }
+
+  .paymentButton {
+    background-color: #ff6b6b;
+    color: #ffffff;
+    border: none;
+    border-radius: 10px;
+    padding: 10px;
+    width: 100%;
+    font-size: 16px;
+    cursor: pointer;
+  }
+}
