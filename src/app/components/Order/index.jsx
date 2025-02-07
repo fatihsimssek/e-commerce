@@ -9,10 +9,10 @@ const Order = ({
   orderedDishes,
   setOrderedDishes,
   orderType,
+  orderNumber,
 }) => {
   const [activeTab, setActiveTab] = useState(orderType);
   const [notes, setNotes] = useState("");
-  console.log(activeTab);
   const discount = 10;
 
   const handleNotesChange = (event) => {
@@ -24,9 +24,8 @@ const Order = ({
   };
 
   const handleQuantityChange = (dishId, newQuantity) => {
-    if (newQuantity < 1) return; // Prevent setting quantity to less than 1
+    if (newQuantity < 1) return;
 
-    // Update orderedDishes in local storage
     const updatedOrderedDishes = orderedDishes.map((item) =>
       item.id === dishId ? { ...item, quantity: newQuantity } : item
     );
@@ -51,7 +50,7 @@ const Order = ({
   return (
     <div className={styles.container}>
       <div className={styles.header}>
-        <h1 className={styles.title}>Orders #34562</h1>
+        <h1 className={styles.title}>Orders #{orderNumber}</h1>
         <div className={styles.buttons}>
           <button
             onClick={() => handleTabChange("dineIn")}

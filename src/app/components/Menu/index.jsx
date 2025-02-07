@@ -7,7 +7,7 @@ import Noodle from "../../../../public/dishes/noodle.png";
 import Omlette from "../../../../public/dishes/ommlette.png";
 import FriedRice from "../../../../public/dishes/fried-rice-omlete.png";
 import Pasta from "../../../../public/dishes/spicy-pasta.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Order from "../Order";
 
 const Menu = () => {
@@ -17,7 +17,14 @@ const Menu = () => {
     JSON.parse(localStorage.getItem("orderedDishes")) || []
   );
 
-  const [orderType, setOrderType] = useState("Dine In");
+  const [orderType, setOrderType] = useState("dineIn");
+  const [orderNumber, setOrderNumber] = useState(0);
+
+  useEffect(() => {
+    const storedOrderNumber =
+      JSON.parse(localStorage.getItem("orderNumber")) || 0;
+    setOrderNumber(storedOrderNumber);
+  }, []);
 
   const handleContentChange = (content) => {
     setActiveContent(content);
@@ -75,7 +82,6 @@ const Menu = () => {
       setSelectedDishes((prevDishes) => [...prevDishes, newDish]);
     }
 
-    // Update orderedDishes in local storage
     const updatedOrderedDishes = [...orderedDishes];
     const existingOrderedDish = updatedOrderedDishes.find(
       (item) => item.id === dish.id
@@ -89,6 +95,16 @@ const Menu = () => {
 
     setOrderedDishes(updatedOrderedDishes);
     localStorage.setItem("orderedDishes", JSON.stringify(updatedOrderedDishes));
+
+    let currentOrderNumber =
+      JSON.parse(localStorage.getItem("orderNumber")) || 0;
+
+    if (updatedOrderedDishes.length === 1) {
+      currentOrderNumber += 1;
+      localStorage.setItem("orderNumber", JSON.stringify(currentOrderNumber));
+    }
+
+    setOrderNumber(currentOrderNumber);
   };
 
   const handleDeleteItem = (id) => {
@@ -153,9 +169,9 @@ const Menu = () => {
         <div className={styles.orderType}>
           <h1 className={styles.title}>Choose Dishes</h1>
           <select onChange={handleOrderTypeChange} value={orderType}>
-            <option value="Dine In">Dine In</option>
-            <option value="To Go">To Go</option>
-            <option value="Delivery">Delivery</option>
+            <option value="dineIn">Dine In</option>
+            <option value="toGo">To Go</option>
+            <option value="delivery">Delivery</option>
           </select>
         </div>
         <div className={styles.dishes}>
@@ -192,6 +208,7 @@ const Menu = () => {
               orderedDishes={orderedDishes}
               setOrderedDishes={setOrderedDishes}
               orderType={orderType}
+              orderNumber={orderNumber}
             />
           ))}
         </div>
