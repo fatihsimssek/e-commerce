@@ -7,13 +7,116 @@ import Noodle from "../../../../public/dishes/noodle.png";
 import Omlette from "../../../../public/dishes/ommlette.png";
 import FriedRice from "../../../../public/dishes/fried-rice-omlete.png";
 import Pasta from "../../../../public/dishes/spicy-pasta.png";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import Order from "../Order";
 
 const Menu = () => {
   const [activeContent, setActiveContent] = useState("all");
+  const [selectedDishes, setSelectedDishes] = useState([]);
+  const [orderedDishes, setOrderedDishes] = useState(
+    JSON.parse(localStorage.getItem("orderedDishes")) || []
+  );
+
+  const [orderType, setOrderType] = useState("dineIn");
+  const [orderNumber, setOrderNumber] = useState(0);
+
+  useEffect(() => {
+    const storedOrderNumber =
+      JSON.parse(localStorage.getItem("orderNumber")) || 0;
+    setOrderNumber(storedOrderNumber);
+  }, []);
 
   const handleContentChange = (content) => {
     setActiveContent(content);
+  };
+
+  const dishes = [
+    {
+      id: 1,
+      name: "Spicy seasoned seafood noodles",
+      price: 2.29,
+      image: Noodle,
+    },
+    {
+      id: 2,
+      name: "Salted Pasta with mushroom sauce",
+      price: 2.69,
+      image: Pasta,
+    },
+    {
+      id: 3,
+      name: "Beef dumpling in hot and sour soup",
+      price: 2.99,
+      image: Beef,
+    },
+    {
+      id: 4,
+      name: "Healthy noodle with spinach leaf",
+      price: 3.29,
+      image: Noodle,
+    },
+    {
+      id: 5,
+      name: "Hot spicy fried rice with omelet",
+      price: 3.49,
+      image: FriedRice,
+    },
+    {
+      id: 6,
+      name: "Spicy instant noodle with special omelette",
+      price: 3.59,
+      image: Omlette,
+    },
+  ];
+
+  const handleDishClick = (dish) => {
+    const existingDishes = selectedDishes.find((item) => item.id === dish.id);
+
+    if (existingDishes) {
+      const updatedDishes = selectedDishes.map((item) =>
+        item.id === dish.id ? { ...item, quantity: item.quantity + 1 } : item
+      );
+      setSelectedDishes(updatedDishes);
+    } else {
+      const newDish = { ...dish, quantity: 1 };
+      setSelectedDishes((prevDishes) => [...prevDishes, newDish]);
+    }
+
+    const updatedOrderedDishes = [...orderedDishes];
+    const existingOrderedDish = updatedOrderedDishes.find(
+      (item) => item.id === dish.id
+    );
+
+    if (existingOrderedDish) {
+      existingOrderedDish.quantity += 1;
+    } else {
+      updatedOrderedDishes.push({ ...dish, quantity: 1 });
+    }
+
+    setOrderedDishes(updatedOrderedDishes);
+    localStorage.setItem("orderedDishes", JSON.stringify(updatedOrderedDishes));
+
+    let currentOrderNumber =
+      JSON.parse(localStorage.getItem("orderNumber")) || 0;
+
+    if (updatedOrderedDishes.length === 1) {
+      currentOrderNumber += 1;
+      localStorage.setItem("orderNumber", JSON.stringify(currentOrderNumber));
+    }
+
+    setOrderNumber(currentOrderNumber);
+  };
+
+  const handleDeleteItem = (id) => {
+    const updatedDishes = selectedDishes.filter((item) => item.id !== id);
+    setSelectedDishes(updatedDishes);
+
+    const updatedOrderedDishes = orderedDishes.filter((item) => item.id !== id);
+    setOrderedDishes(updatedOrderedDishes);
+    localStorage.setItem("orderedDishes", JSON.stringify(updatedOrderedDishes));
+  };
+  const handleOrderTypeChange = (event) => {
+    setOrderType(event.target.value);
   };
 
   return (
@@ -65,81 +168,30 @@ const Menu = () => {
       <div className={styles.container}>
         <div className={styles.orderType}>
           <h1 className={styles.title}>Choose Dishes</h1>
-          <select>
-            <option>Dine In</option>
-            <option>To Go</option>
-            <option>Delivery</option>
+          <select onChange={handleOrderTypeChange} value={orderType}>
+            <option value="dineIn">Dine In</option>
+            <option value="toGo">To Go</option>
+            <option value="delivery">Delivery</option>
           </select>
         </div>
         <div className={styles.dishes}>
-          {activeContent === "all" && (
-            <>
-              <div className={styles.dish}>
+          {activeContent === "all" &&
+            dishes.map((dish) => (
+              <div
+                key={dish.id}
+                className={styles.dish}
+                onClick={() => handleDishClick(dish)}
+              >
                 <Image
-                  alt="Spicy seasoned seafood noodles"
+                  alt={dish.name}
                   height={132}
-                  src={Noodle}
+                  src={dish.image}
                   width={132}
                 />
-                <p className={styles.name}>Spicy seasoned seafood noodles</p>
-                <p className={styles.price}>$ 2.29</p>
+                <p className={styles.name}>{dish.name}</p>
+                <p className={styles.price}>${dish.price.toFixed(2)}</p>
               </div>
-              <div className={styles.dish}>
-                <Image
-                  alt="Salted Pasta with mushroom sauce"
-                  height={132}
-                  src={Pasta}
-                  width={132}
-                />
-                <p className={styles.name}>Salted Pasta with mushroom sauce</p>
-                <p className={styles.price}>$ 2.69</p>
-              </div>
-              <div className={styles.dish}>
-                <Image
-                  alt="Beef dumpling in hot and sour soup"
-                  height={132}
-                  src={Beef}
-                  width={132}
-                />
-                <p className={styles.name}>
-                  Beef dumpling in hot and sour soup
-                </p>
-                <p className={styles.price}>$ 2.99</p>
-              </div>
-              <div className={styles.dish}>
-                <Image
-                  alt="Healthy noodle with spinach leaf"
-                  height={132}
-                  src={Noodle}
-                  width={132}
-                />
-                <p className={styles.name}>Healthy noodle with spinach leaf</p>
-                <p className={styles.price}>$ 3.29</p>
-              </div>
-              <div className={styles.dish}>
-                <Image
-                  alt="Hot spicy fried rice with omelet"
-                  height={132}
-                  src={FriedRice}
-                  width={132}
-                />
-                <p className={styles.name}>Hot spicy fried rice with omelet</p>
-                <p className={styles.price}>$ 3.49</p>
-              </div>
-              <div className={styles.dish}>
-                <Image
-                  alt="Spicy instant noodle with special omelette"
-                  height={132}
-                  src={Omlette}
-                  width={132}
-                />
-                <p className={styles.name}>
-                  Spicy instant noodle with special omelette
-                </p>
-                <p className={styles.price}>$ 3.59</p>
-              </div>
-            </>
-          )}
+            ))}
           {activeContent === "cold" && <p>Displaying Cold Dishes...</p>}
           {activeContent === "soup" && <p>Displaying Soup...</p>}
           {activeContent === "grill" && <p>Displaying Grill...</p>}
@@ -147,6 +199,20 @@ const Menu = () => {
           {activeContent === "dessert" && <p>Displaying Dessert...</p>}
         </div>
       </div>
+      {selectedDishes.length > 0 && (
+        <div>
+          {selectedDishes.map((dish) => (
+            <Order
+              key={dish.id}
+              handleDeleteItem={handleDeleteItem}
+              orderedDishes={orderedDishes}
+              setOrderedDishes={setOrderedDishes}
+              orderType={orderType}
+              orderNumber={orderNumber}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 };

@@ -1,3 +1,4 @@
+import Order from "../Order";
 import Sidebar from "../Sidebar";
 import styles from "./Layout.module.scss";
 
