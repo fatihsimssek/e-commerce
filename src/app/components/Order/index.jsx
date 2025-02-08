@@ -13,7 +13,7 @@ const Order = ({
 }) => {
   const [activeTab, setActiveTab] = useState(orderType);
   const [notes, setNotes] = useState("");
-  const discount = 10;
+  const discount = 0;
 
   const handleNotesChange = (event) => {
     setNotes(event.target.value);
@@ -152,8 +152,7 @@ const Order = ({
       <div className={styles.summary}>
         <p className={styles.discount}>Discount</p>
         <p className={styles.discountAmount}>
-          ({discount}%): -$
-          {(calculateSubtotal() * (discount / 100)).toFixed(2)}
+          ${(calculateSubtotal() * (discount / 100)).toFixed(2)}
         </p>
       </div>
       <div className={styles.summary}>
