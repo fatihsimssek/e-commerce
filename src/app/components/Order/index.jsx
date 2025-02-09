@@ -1,5 +1,5 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import Trash from "../../../../public/icons/Trash.svg";
 import styles from "./Order.module.scss";

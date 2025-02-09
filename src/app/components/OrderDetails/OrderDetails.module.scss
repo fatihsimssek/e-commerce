@@ -1,0 +1,33 @@
+@import "./../../styles/index.scss";
+
+.container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $background;
+  border-radius: 0 16px 16px 0;
+  padding: 20px;
+  width: 90%;
+  max-width: 645px;
+  color: $white;
+  position: absolute;
+  left: 185px;
+  top: 100px;
+  .title {
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 28px;
+    padding: 16px;
+  }
+  .orderDetails {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    .customerInfo {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+  }
+}
