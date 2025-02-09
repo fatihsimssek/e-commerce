@@ -1,10 +1,12 @@
-import styles from "./OrderReport.module.scss";
+"use client";
+import { useParams } from "next/navigation";
+import styles from "./OrderDetails.module.scss";
+import Image from "next/image";
 import ErenJaegar from "../../../../public/users/profile/Eren Jaegar.png";
 import ReinerBraun from "../../../../public/users/profile/Reiner Braunn.png";
 import LeviAckerman from "../../../../public/users/profile/Levi Ackerman.png";
 import HistoriaReiss from "../../../../public/users/profile/Historia Reiss.png";
 import HanjiZoe from "../../../../public/users/profile/Hanji Zoe.png";
-import OrderRow from "./OrderRow";
 const orders = [
   {
     id: 1,
@@ -47,27 +49,25 @@ const orders = [
     status: "Completed",
   },
 ];
-const OrderReport = () => {
+const OrderDetails = () => {
+  const params = useParams();
+  const id = params.id;
+  const order = orders.find((order) => order.id === parseInt(id));
+
   return (
     <div className={styles.container}>
-      <h1 className={styles.title}>Order Report</h1>
-      <table className={styles.table}>
-        <thead>
-          <tr>
-            <th scope="col">Customer</th>
-            <th scope="col">Menu</th>
-            <th scope="col">Total Payment</th>
-            <th scope="col">Status</th>
-          </tr>
-        </thead>
-        <tbody className={styles.tableBody}>
-          {orders.map((order) => (
-            <OrderRow key={order.id} order={order} />
-          ))}
-        </tbody>
-      </table>
+      <h2 className={styles.title}>Order Details</h2>
+      <div className={styles.orderDetails}>
+        <div className={styles.customerInfo}>
+          <Image src={order.avatar} alt={order.customer} />
+          <h3>{order.customer}</h3>
+        </div>
+        <p>Menu: {order.menu}</p>
+        <p>Total: {order.total}</p>
+        <p>Status: {order.status}</p>
+      </div>
     </div>
   );
 };
 
-export default OrderReport;
+export default OrderDetails;

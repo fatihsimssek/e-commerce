@@ -1,9 +1,10 @@
 "use client";
 import Image from "next/image";
 import styles from "./../OrderReport.module.scss";
+import Link from "next/link";
 
 const OrderRow = ({ order }) => (
-  <tr>
+  <tr className={styles.row}>
     <td className={styles.customerInfo}>
       <Image
         alt={`Avatar of ${order.customer}`}
@@ -17,14 +18,12 @@ const OrderRow = ({ order }) => (
       />
       {order.customer}
     </td>
-    <td>{order.menu}</td>
+    <td className={styles.menu}>
+      <Link href={`/order/${order.id}`}>{order.menu}</Link>
+    </td>
     <td>{order.total}</td>
     <td>
-      <span
-        className={styles[order.status.toLowerCase()] || styles.defaultStatus}
-      >
-        {order.status}
-      </span>
+      <span className={styles[order.status.toLowerCase()]}>{order.status}</span>
     </td>
   </tr>
 );

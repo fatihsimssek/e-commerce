@@ -77,8 +77,21 @@
       align-items: center;
       color: $gray;
     }
+    .menu {
+      a {
+        text-decoration: none;
+        display: flex;
+        align-items: center;
+        color: $gray;
+      }
+    }
     .customerInfo img {
       margin-right: 10px;
+    }
+    .tableBody {
+      .row {
+        cursor: pointer;
+      }
     }
   }
 }
