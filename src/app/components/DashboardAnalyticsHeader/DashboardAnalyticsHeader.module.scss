@@ -1,0 +1,11 @@
+@import "./../../styles/index.scss";
+.container {
+  max-width: 645px;
+  width: 100%;
+  .analytics {
+    display: flex;
+    gap: 40px;
+    margin-top: 20px;
+    margin-bottom: 20px;
+  }
+}

@@ -1,0 +1,55 @@
+@import "./../../styles/index.scss";
+.revenue {
+  width: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  font-family: $fontBarlow, sans-serif;
+  background-color: $background;
+  align-items: flex-start;
+  gap: 40px;
+  border-radius: 10px;
+  padding: 16px;
+  .revenueTitle {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    .subtitle {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 5px;
+      color: $white;
+      .perc {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #50d1aa;
+      }
+      .percDown {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 16px;
+        color: #ff7ca3;
+      }
+    }
+    .totalRevenue {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+      .amount {
+        font-weight: 600;
+        font-size: 28px;
+        line-height: 40px;
+        color: $white;
+      }
+      .title {
+        font-weight: 500;
+        font-size: 14px;
+        line-height: 18px;
+        color: #abbbc2;
+      }
+    }
+  }
+}
