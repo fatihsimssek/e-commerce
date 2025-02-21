@@ -1,0 +1,17 @@
+@import "./../../styles/index.scss";
+
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  background-color: $background;
+  border-radius: 0 16px 16px 0;
+  padding: 20px;
+  width: 90%;
+  max-width: 645px;
+  height: 834px;
+  color: $white;
+  position: absolute;
+  left: 185px;
+  top: 100px;
+}

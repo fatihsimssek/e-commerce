@@ -44,17 +44,19 @@ const Sidebar = () => {
       <div className={styles.menuItems}>
         {menuItems.map(({ id, Icon, label, href }) => {
           return (
-            <Link key={id} href={href} onClick={() => handleItemClick(id)}>
-              <div
-                className={activeItem === id ? styles.active : ""}
-                aria-label={label}
-              >
-                <Icon
-                  rectFill={activeItem === id ? "#EA7C69" : "transparent"}
-                  fill={activeItem === id ? "white" : "#EA7C69"}
-                />
-              </div>
-            </Link>
+            <div key={id}>
+              <Link href={href} onClick={() => handleItemClick(id)}>
+                <div
+                  className={activeItem === id ? styles.active : ""}
+                  aria-label={label}
+                >
+                  <Icon
+                    rectFill={activeItem === id ? "#EA7C69" : "transparent"}
+                    fill={activeItem === id ? "white" : "#EA7C69"}
+                  />
+                </div>
+              </Link>
+            </div>
           );
         })}
       </div>

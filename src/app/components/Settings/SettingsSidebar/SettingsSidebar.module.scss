@@ -1,4 +1,4 @@
-@import "./../../styles/index.scss";
+@import "./../../../styles/index.scss";
 
 .sidebar {
   max-width: 92px;
@@ -12,10 +12,7 @@
   position: relative;
   border-radius: 16px 0 0 16px;
   top: 0;
-  left: 0;
-  .logo {
-    margin-top: 10px;
-  }
+  left: 20;
   .menuItems {
     display: flex;
     flex-direction: row;
@@ -48,11 +45,5 @@
       background-color: $secondaryColor;
       border-radius: 10px;
     }
-  }
-  .settings {
-    position: relative;
-    border-radius: 16px 0 0 16px;
-    top: 200px;
-    left: -40px;
   }
 }
