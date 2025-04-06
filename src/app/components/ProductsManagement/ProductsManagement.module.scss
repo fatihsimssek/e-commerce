@@ -1,5 +1,7 @@
 @import "./../../styles/index.scss";
 .container {
+  width: 740px;
+  height: 100%;
   display: flex;
   flex-direction: column;
   padding: 20px;

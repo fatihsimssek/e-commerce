@@ -58,15 +58,12 @@ const ProductManagement = () => {
 
   return (
     <div className={styles.container}>
-      {/* Header */}
       <div className={styles.header}>
         <h1>Products Management</h1>
         <button>
           <FilterIcon width="20" height="20" /> Manage Categories
         </button>
       </div>
-
-      {/* Navigation */}
       <div className={styles.nav}>
         <Link
           onClick={() => handleContentChange("hot")}
@@ -112,9 +109,7 @@ const ProductManagement = () => {
         </Link>
       </div>
 
-      {/* Content */}
       <div className={styles.content}>
-        {/* Add New Card */}
         <div
           className={`${styles.card} ${styles.addNew}`}
           onClick={handleAddNew}
@@ -122,8 +117,6 @@ const ProductManagement = () => {
           <PlusButton width="50" height="50" />
           <p>Add new dish</p>
         </div>
-
-        {/* Dish Cards */}
         {activeContent === "hot" &&
           dishes.map((dish, index) => (
             <div className={styles.card} key={index}>

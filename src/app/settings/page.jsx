@@ -1,6 +1,7 @@
 import React from "react";
 import Settings from "../components/Settings";
 import { SettingsProvider } from "../context/SettingsContext";
+import SettingsSidebar from "../components/Settings/SettingsSidebar";
 
 const SettingsPage = () => {
   return (

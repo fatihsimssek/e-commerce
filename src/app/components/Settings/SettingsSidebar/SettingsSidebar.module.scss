@@ -1,49 +1,71 @@
 @import "./../../../styles/index.scss";
 
 .sidebar {
-  max-width: 92px;
-  width: 100%;
-  height: 834px;
+  width: 275px;
+  height: 720px;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  align-items: flex-start;
+  justify-content: flex-start;
   background-color: $background;
   position: relative;
-  border-radius: 16px 0 0 16px;
-  top: 0;
+  border-radius: 16px;
+  top: 88;
   left: 20;
   .menuItems {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
-    align-items: center;
+    align-items: flex-start;
     background-color: $background;
     margin-top: 10px;
+    padding: 10px;
     a {
-      width: 92px;
+      max-width: 275px;
       height: 102px;
       display: flex;
       justify-content: center;
       align-items: center;
       border: none;
       background-color: transparent;
+      text-decoration: none;
       cursor: pointer;
+      &:active {
+        background: linear-gradient(
+          180deg,
+          rgba(234, 124, 105, 0.26),
+          rgba(234, 124, 105, 0.26)
+        );
+      }
       .menuItem {
         display: flex;
-        justify-content: center;
-        align-items: center;
+        justify-content: flex-start;
+        align-items: flex-start;
+        gap: 10px;
+        color: $white;
+        .description {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 5px;
+          .title {
+            font-size: 12px;
+            font-weight: 500;
+            color: $white;
+          }
+          .subtitle {
+            font-size: 10px;
+            font-weight: 400;
+            color: $tertiaryColor;
+          }
+        }
       }
     }
     .active {
-      width: 92px;
-      height: 102px;
       display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: $secondaryColor;
-      border-radius: 10px;
+      justify-content: flex-start;
+      align-items: flex-start;
+      gap: 10px;
     }
   }
 }
